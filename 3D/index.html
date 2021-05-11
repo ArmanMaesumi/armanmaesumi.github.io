@@ -1,20 +1,16 @@
-/**
- * entry.js
- * 
- * This is the first file loaded. It sets up the Renderer, 
- * Scene and Camera. It also starts the render loop and 
- * handles window resizes
- * 
- */
+<!DOCTYPE html>
+<html>
+<body>
 
-import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from 'three';
-import * as THREE from 'three';
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { FlyControls } from "three/examples/jsm/controls/FlyControls";
-import { FirstPersonControls } from "three/examples/jsm/controls/FirstPersonControls";
-import SeedScene from './objects/Scene.js';
+<h1>The script src attribute</h1>
 
-const vertexShader = `
+<script type="module">
+
+    import * as THREE from 'https://cdn.skypack.dev/three';
+    import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from 'https://cdn.skypack.dev/three';
+    import { OrbitControls } from "https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls";
+
+    const vertexShader = `
     precision highp float;
     uniform float time;
     uniform vec2 resolution;
@@ -344,7 +340,6 @@ var clock = new THREE.Clock();
 const scene = new Scene();
 const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({antialias: true});
-const seedScene = new SeedScene();
 const controls = new OrbitControls( camera, renderer.domElement );
 // const firstPersonControls = new FirstPersonControls(camera, renderer.domElement);
 // const flyControls = new FlyControls(camera, renderer.domElement);
@@ -479,3 +474,7 @@ function onDocumentKeyDown(event) {
       camera.lookAt(new Vector3(0,0,0));
     }
 };
+</script>
+
+</body>
+</html>
