@@ -1,0 +1,27 @@
+#include "octane-oslintrin.h"
+
+shader OslGeometry(output _sdf c = _SDFDEF)
+{
+    float SCALE = 2.8;
+    float MINRAD2 = .25;
+    float minRad2 = clamp(MINRAD2, 1.0e-9, 1.0);
+    vector scale = vector(SCALE, SCALE, SCALE) / minRad2;
+    float absScalem1 = abs(SCALE - 1.0);
+    float AbsScaleRaisedTo1mIters = pow(abs(SCALE), float(1-10));
+
+	vector p = P;
+	vector p0 = p;
+	float dist = 1.;
+      	for (int i = 0; i < 9; i++)
+      	{
+	   p = clamp(p, -1.0, 1.0) * 2.0 - p;
+
+           float r2 = dot(p, p);
+           p *= clamp(max(minRad2/r2, minRad2), 0.0, 1.0);
+           dist *= clamp(max(minRad2/r2, minRad2), 0.0, 1.0);
+           // scale, translate
+           p = p*(vector(2.8)/minRad2) + p0;
+           dist = dist*(SCALE/minRad2) + 1.;
+      }
+      c.dist = ((length(p) - absScalem1) / dist - AbsScaleRaisedTo1mIters);
+    }

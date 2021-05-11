@@ -1,0 +1,481 @@
+/**
+ * entry.js
+ * 
+ * This is the first file loaded. It sets up the Renderer, 
+ * Scene and Camera. It also starts the render loop and 
+ * handles window resizes
+ * 
+ */
+
+import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from 'three';
+import * as THREE from 'three';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { FlyControls } from "three/examples/jsm/controls/FlyControls";
+import { FirstPersonControls } from "three/examples/jsm/controls/FirstPersonControls";
+import SeedScene from './objects/Scene.js';
+
+const vertexShader = `
+    precision highp float;
+    uniform float time;
+    uniform vec2 resolution;
+    void main()	{
+        gl_Position = vec4( position, 1.0 );
+    }
+`;
+
+const fragShader = `
+    precision highp float;
+
+    uniform float time;
+    uniform vec2 resolution;
+
+    uniform vec3 camera;
+    uniform vec3 look_dir;
+
+    uniform int scene_id;
+    uniform int animate;
+
+    // Constants
+    #define PI 3.1415925359
+    #define MAX_STEPS 100
+    #define SURFACE_DIST .001
+
+    #define AA 1
+
+    float Power;
+
+    // ------------------------------------------------|
+    // Functions for composing SDFs                    |
+    // SDF_union, SDF_intersection, SDF_difference     |
+    // ------------------------------------------------|
+    
+    float SDF_union(float dist_a, float dist_b) {
+      return min(dist_a, dist_b);
+    }
+
+    float SDF_intersect(float dist_a, float dist_b) {
+      return max(dist_a, dist_b);
+    }
+
+    float SDF_difference(float dist_a, float dist_b) {
+      return max(dist_a, -1.0 * dist_b);
+    }
+
+    // ------------------------------------------------|
+
+
+    // ------------------------------------------------|
+    // A collection of SDFs:                           |
+    // ------------------------------------------------|
+    
+    float SDF_plane( vec3 p, vec3 n, float h ) {
+      // n must be normalized
+      return dot(p,n) + h;
+    }
+
+    float SDF_sphere(vec3 p, float r) {
+      return length(p) - r;
+    }
+
+    float SDF_infinite_sphere(vec3 pos) {
+      float d1 = distance(mod(pos, 2.), vec3(1,1,1))-.54321;
+      return d1;
+    }
+
+    float SDF_box(vec3 pos, vec3 s) {
+      // s is length of cuboid in each direction
+      vec3 v = abs(pos) - s;
+      return max(max(v.x, v.y), v.z);
+    }
+
+    float SDF_cross(vec3 pos) {
+        float inf = 3.0;
+        float box1 = SDF_box(pos, vec3(inf, 1.0, 1.0));
+        float box2 = SDF_box(pos, vec3(1.0, inf, 1.0));
+        float box3 = SDF_box(pos, vec3(1.0, 1.0, inf));
+        return SDF_union(box1, SDF_union(box2, box3));
+    }
+
+    float SDF_menger(vec3 pos, int iters) {
+        // https://iquilezles.org/www/articles/menger/menger.htm
+      
+        float d = SDF_box(pos, vec3(1.0));
+        float s = 1.0;
+      
+        for (int i = 0; i < iters; i++) {
+          vec3 a = mod(pos * s, 2.0) - 1.0;
+          vec3 r = vec3(1.0) - 3.0 * abs(a);
+          s *= 3.0;
+          float c = SDF_cross(r) / s;
+          d = max(d, c);
+        }
+
+        return d;
+    }
+
+    float SDF_mandelbulb(vec3 pos) {
+        vec3 z = pos;
+        float dr = 1.0;
+        float r = 0.0;
+        for (int i = 0; i < 10; i++) {
+          r = length(z);
+          if (r > 1.5) break;
+          
+          // convert to polar coordinates
+          float theta = acos(z.z / r);
+          float phi = atan(z.y, z.x);
+          dr = pow(r, Power - 1.0) * Power * dr + 1.0;
+          
+          // scale and rotate the point
+          float zr = pow(r, Power);
+          theta = theta * Power;
+          phi = phi * Power;
+          
+          // convert back to cartesian coordinates
+          z = zr * vec3(
+            sin(theta) * cos(phi), 
+            sin(phi) * sin(theta), 
+            cos(theta)
+            );
+
+          z+=pos;
+        }
+
+        return 0.5 * log(r) * r / dr;
+    }
+
+    float SDF_pyramid(vec3 pt) {
+      float r;
+      float offset = 1.;
+      float S = 2.;
+      pt.y -= 2.5;
+      int n = 0;
+      while(n < 15) {
+          if(pt.x + pt.y < 0.) pt.xy = -pt.yx;
+          if(pt.x + pt.z < 0.) pt.xz = -pt.zx;
+          if(pt.y + pt.z < 0.) pt.zy = -pt.yz;
+          pt = pt * S - offset*(S - 1.0);
+          n++;
+      }
+      
+      return (length(pt) * pow(S, -float(n)));
+    }
+
+    #define SCALE 2.8
+    #define MIN_RADIUS .25
+
+    float minRadius = clamp(MIN_RADIUS, 1.0e-9, 1.0);
+    float scaleMinusOne = abs(SCALE - 1.0);
+    float scalePow = pow(abs(SCALE), float(1-10));
+
+    float SDF_mandelbox(vec3 pos) {
+      vec4 p = vec4(pos, 1.0);
+      vec4 p0 = p;  // p.w is the distance estimate
+
+      for (int i = 0; i < 9; i++) {
+        p.xyz = 2.0 * clamp(p.xyz, -1.0, 1.0) - p.xyz;
+
+        p *= clamp(max(0.25 / dot(p.xyz, p.xyz), 0.25), 0.0, 1.0);
+
+        p = p0 + p * (vec4(SCALE, SCALE, SCALE, abs(SCALE)) / minRadius);
+      }
+
+      return ((length(p.xyz) - scaleMinusOne) / p.w - scalePow);
+    }
+
+    // ------------------------------------------------|
+  
+
+    // ------------------------------------------------|
+    // Ray Marching code:                              |
+    // ------------------------------------------------|
+    
+    float sceneSDF(vec3 pos) {    
+      // A composition of SDFs, forming the scene
+      float d = 0.0;
+
+      // Fractal SDFs available:
+      // d = SDF_infinite_sphere(pos); // Infinite sky of spheres, not really a fractal
+      // d = SDF_menger(pos, 4);       // Menger sponge with 4 iterations
+      // d = SDF_mandelbulb(pos);      // Mandelbulb fractal, power is controlled in main
+      // d = SDF_mandelbox(pos);       // Mandelbox
+      // d = SDF_pyramid(pos);         // Serpinski pyramid
+
+      // Composing SDFs can be done like so:
+      // d = SDF_difference(SDF_mender(pos, 4), SDF_mandelbulb(pos));
+
+      if (scene_id == 0) {
+        d = SDF_menger(pos, 4);
+      } else if (scene_id == 1) {
+        d = SDF_mandelbulb(pos);
+      } else if (scene_id == 2) {
+        d = SDF_mandelbox(pos);
+      } else if (scene_id == 3) {
+        d = SDF_pyramid(pos);
+      } else if (scene_id == 4) {
+        d = SDF_intersect(SDF_menger(pos, 4), SDF_mandelbox(pos));
+      } else if (scene_id == 5) {
+        d = SDF_intersect(SDF_mandelbulb(pos), SDF_mandelbox(pos));
+      } else {
+        d = 0.0;
+      }
+      
+      return d;
+    }
+
+    vec3 getCameraRayDir(vec2 uv, vec3 camera, vec3 target) {
+      float FOV = 2.0;
+
+      vec3 camForward = normalize(target - camera);
+      vec3 camRight = normalize(cross(vec3(0.0, 1.0, 0.0), camForward));
+      vec3 camUp = normalize(cross(camForward, camRight));
+      
+      vec3 dir = normalize(uv.x * camRight + uv.y * camUp + camForward * FOV);
+      return dir;
+    }
+    
+    vec2 normalizeScreenCoords(vec2 screenCoord) {
+        vec2 v = 2.0 * (screenCoord/resolution.xy - 0.5);
+        v.x *= resolution.x/resolution.y; // Correct for aspect ratio
+        return v;
+    }
+
+    float castRay(vec3 origin, vec3 dir) {
+        float t = 0.0; // accumulate distance travelled
+        
+        for (int i = 0; i < MAX_STEPS; i++) {
+            float step = sceneSDF(origin + dir*t); // eval SDF at new ray pos
+            
+            if (step < (SURFACE_DIST*t)) { // Collision threshold
+                return t;
+            }
+
+            t += step;
+        }
+        
+        return -1.0; // No collision.
+    }
+
+    vec3 SDF_normal(vec3 pos) { 
+        // Approximate normals using offset samples
+        float primary = sceneSDF(pos);
+        vec2 epsilon = vec2(0.001, 0.0);
+        float d1 = sceneSDF(pos + epsilon.xyy);
+        float d2 = sceneSDF(pos + epsilon.yxy);
+        float d3 = sceneSDF(pos + epsilon.yyx);
+        return normalize(vec3(d1, d2, d3) - primary);
+    }
+
+    vec3 render(vec3 origin, vec3 dir) {
+        vec3 color = vec3(0.0);
+
+        // Animated light position
+        vec3 L = normalize(vec3(sin(time)*0.5, cos(time*0.5)+0.5, -0.5));
+
+        // Shoot ray into scene
+        float t = castRay(origin, dir);
+
+        if (t == -1.0) { // Ray missed scene
+            color = vec3(0.3, 0.35, 0.6) - (dir.y * 0.7);
+        } else {
+            vec3 pos = origin + dir*t;
+            vec3 N = SDF_normal(pos);
+    
+            vec3 objColor = vec3(1., .4, .02);
+            // L is vector from surface point to light, N is surface normal. N and L must be normalized!
+            float NoL = max(dot(N, L), 0.0);
+            vec3 LDirectional = vec3(1.80,1.27,0.99) * NoL;
+            vec3 LAmbient = vec3(0.03, 0.04, 0.1);
+            vec3 diffuse = objColor * (LDirectional + LAmbient);
+        
+            color = diffuse;
+          
+            float shadow = 0.0;
+            vec3 shadowRayOrigin = pos + N * 0.01;
+            vec3 shadowRayDir = L;
+            float t = castRay(shadowRayOrigin, shadowRayDir);
+            if (t >= -1.0) {
+                shadow = 1.0;
+            }
+            color = mix(color, color*0.8, shadow);
+        }
+        
+        return color;
+    }
+
+    vec4 getSceneColor(vec2 screenPos) {
+        vec2 uv = normalizeScreenCoords(screenPos);
+        vec3 rayDir = getCameraRayDir(uv, camera, camera + look_dir);
+        
+        vec3 color = render(camera, rayDir);
+        
+        return vec4(color, 1.0);
+    }
+
+    // ------------------------------------------------|
+
+    void main() {
+      gl_FragColor = vec4(0.0);
+      if (animate > 0) {
+        Power = 5.0 + 8.0 * abs(sin(time/4.0)); // For animating mandelbulb
+      } else {
+        Power = 8.0;
+      }
+      #if AA > 1
+        float count = 0.0;
+        for (float i = 0.0; i < float(AA); i++) {
+            for (float j = 0.0; j < float(AA); j++) {
+              gl_FragColor += getSceneColor(gl_FragCoord.xy + vec2(j, i) / float(AA));
+              count += 1.0;
+            }
+        }
+        gl_FragColor /= count;
+      #else
+        gl_FragColor = getSceneColor(gl_FragCoord.xy);
+      #endif
+      // Gamma correction (1.0 / 2.2)
+      gl_FragColor = pow(gl_FragColor, vec4(0.4545)); 
+    }
+`;
+
+var scene_id = 0;
+var animate = 0;
+var clock = new THREE.Clock();
+const scene = new Scene();
+const camera = new PerspectiveCamera();
+const renderer = new WebGLRenderer({antialias: true});
+const seedScene = new SeedScene();
+const controls = new OrbitControls( camera, renderer.domElement );
+// const firstPersonControls = new FirstPersonControls(camera, renderer.domElement);
+// const flyControls = new FlyControls(camera, renderer.domElement);
+
+// controls.enableDamping = true;
+// scene
+// scene.add(seedScene);
+
+// camera
+// camera.position.set(6,3,-10);
+camera.position.set(0,0,-5);
+console.log(camera.position);
+camera.lookAt(new Vector3(0,0,0));
+controls.panSpeed = 0.5;
+controls.rotateSpeed = 0.25;
+controls.zoomSpeed = 0.5;
+// controls.screenSpacePanning = false;
+// controls.target = new THREE.Vector3(0, 0, 1);
+// controls.autoRotate=true;
+// flyControls.movementSpeed = 5;
+// flyControls.rollSpeed = Math.PI / 12;
+// flyControls.autoForward = true;
+// flyControls.dragToLook = true;
+// flyControls.update();
+console.log(camera.position);
+controls.update();
+
+// renderer
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setClearColor(0x7ec0ee, 1);
+
+// render loop
+const onAnimationFrameHandler = (timeStamp) => {
+  renderer.render(scene, camera);
+  seedScene.update && seedScene.update(timeStamp);
+  window.requestAnimationFrame(onAnimationFrameHandler);
+}
+window.requestAnimationFrame(onAnimationFrameHandler);
+
+// resize
+const windowResizeHanlder = () => { 
+  const { innerHeight, innerWidth } = window;
+  renderer.setSize(innerWidth, innerHeight);
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+};
+windowResizeHanlder();
+window.addEventListener('resize', windowResizeHanlder);
+
+// dom
+document.body.style.margin = 0;
+document.body.appendChild( renderer.domElement );
+
+// SHADER
+var uniforms = {
+  time: { type: "f", value: 1.0 },
+  resolution: { type: "v2", value: new THREE.Vector2(innerWidth, innerHeight) },
+  camera: {type: "v3", value: camera.position},
+  look_dir: {type: "v3", value: new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion)},
+  scene_id: {type: "int", value: scene_id},
+  animate: {type: "int", value: animate}
+};
+
+var material = new THREE.ShaderMaterial({
+  uniforms: uniforms,
+  vertexShader: vertexShader,
+  fragmentShader: fragShader
+});
+
+var mesh = new THREE.Mesh(new THREE.PlaneGeometry(10000, 10000), material);
+scene.add(mesh);
+var startTime = Date.now();
+render();
+// animate();
+// function animate() {
+
+// 	requestAnimationFrame( animate );
+
+// 	// required if controls.enableDamping or controls.autoRotate are set to true
+// 	controls.update();
+
+// 	// renderer.render( scene, camera );
+//   render();
+// }
+function setCamControls() {
+
+}
+
+function render() {
+  // console.log(camera.position);
+  // console.log(new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion));
+  var elapsedMilliseconds = Date.now() - startTime;
+  var elapsedSeconds = elapsedMilliseconds / 1000.;
+
+  var delta = clock.getDelta();
+  // flyControls.update(delta);
+  controls.update();
+  renderer.clear();
+  requestAnimationFrame(render);
+  
+  uniforms.time.value = clock.getElapsedTime();
+  uniforms.look_dir.value = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+  uniforms.scene_id.value = scene_id;
+  uniforms.animate.value = animate;
+  renderer.render(scene, camera);
+}
+
+// KEYBOARD CONTROLS
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 49) {          // "1" key - Menger sponge scene
+      scene_id = 0;
+    } else if (keyCode == 50) {   // "2" key - Mandelbulb scene
+      scene_id = 1;
+    } else if (keyCode == 51) {   // "3" key - Mandelbox scene
+      scene_id = 2;
+    } else if (keyCode == 52) {   // "4" key - Serpinski scene
+      scene_id = 3;
+    } else if (keyCode == 53) {   // "5" key - Menger sponge intersect Mandelbox scene
+      scene_id = 4;
+    } else if (keyCode == 54) {   // "6" key - Mandelbulb sponge intersect Mandelbox scene
+      scene_id = 5;
+    } else if (keyCode == 65) {   // "a" key - Toggle animated fractal
+      if (animate == 0) {
+        animate = 1;
+      } else {
+        animate = 0;
+      }
+    } else if (keyCode == 82) {   // "r" key - Reset camera
+      camera.position.set(0,0,-5);
+      camera.lookAt(new Vector3(0,0,0));
+    }
+};
