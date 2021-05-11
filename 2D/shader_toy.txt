@@ -1,0 +1,71 @@
+// Fractal parameters (be careful here):
+#define AA 1            // Don't go too high, on my 1080Ti AA=4 starts lagging 
+#define iterations 10000 // Can increase if your GPU is good
+
+// Colorizer parameters:
+#define bg vec3(3.0,3.0,4.0)
+#define bg_exposure 0.5
+#define power 0.22
+#define glow 0.6
+        
+// Compute orbit stability of c under Z_{n+1} = Z_{n}^2 + c
+float mandelbrot(vec2 c) {
+    vec2 z = vec2(0.0); // Complex number
+    for (int i = 0; i < iterations; i++) {
+        // Complex multiplication for z^2 + c:
+        z = vec2(z.x*z.x - z.y*z.y, z.x*z.y + z.y*z.x) + c;
+
+        if(dot(z,z) > 4.0) { // Orbit blew up!
+            return float(i); // return number of iterations
+        }
+    }
+
+    // Not in set
+    return -1.0;
+}
+
+// Returns color vector for a given number of iterations
+vec3 colorizer(float iters, float scale) {
+    if (iters < 0.0) { // Not in mandelbrot set!
+        return vec3(0.0, 0.0, 0.0);
+    } else {
+        vec3 c = vec3(bg_exposure);
+        c += glow * cos(bg + 0.05 * iters * pow( scale, power ) );
+        return c;
+    }
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+        vec2 resolution = iResolution.xy;
+        vec2 pixelPos = fragCoord.xy * resolution;
+        pixelPos = fragCoord;
+        fragColor = vec4(0.0, 0.0, 0.0, 1.0);
+               
+        vec2 p = (2.0*fragCoord-iResolution.xy)/iResolution.y;
+        float tz = 0.5 - 0.5*cos(0.225*iTime); //.4 125
+        float zoo = pow( 0.5, 13.0*tz ); //15
+        vec2 c = vec2(-1.4112, 0) + p*zoo;
+        zoo = 0.001;
+        c = vec2(-1.41222, 0) + p*zoo;
+        
+        if (AA > 1) { // Anti-aliasing
+            for (int m = 0; m < AA; m++) {
+                for (int n = 0; n < AA; n++) {
+                    vec2 p = (2.0*(pixelPos.xy+vec2(float(m),float(n))/float(AA))-resolution.xy)/resolution.y;
+                    float iter = mandelbrot(c);
+                    fragColor.xyz += colorizer(iter, zoo);
+                }
+            }
+            
+            // blend
+            fragColor.xyz /= float(AA*AA);
+
+        } else {
+            vec2  p = (2.0*pixelPos-resolution.xy)/resolution.y;
+            float iter = mandelbrot(c);
+            fragColor.xyz += colorizer(iter, zoo);
+        }
+
+        fragColor.w = 1.0;
+}
