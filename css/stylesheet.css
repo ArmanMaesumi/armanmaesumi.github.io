@@ -104,32 +104,39 @@ a:hover {
   text-decoration: none;
 }
 
-body,
+body {
+  font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  font-feature-settings: 'lnum' 1;
+  color: #262626;
+  /* background-color: #f9f9f9; */
+}
+
 td,
 th,
 tr,
 p {
-  font-family: 'HarrietLight', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
   font-feature-settings: 'lnum' 1;
   color: #262626;
 }
 
 a {
-  font-family: 'HarrietLight', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
   font-feature-settings: 'lnum' 1;
 }
 
 strong {
-  font-family: 'Harriet', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
   color: #262626;
 }
 
 heading {
   /* font-family: 'Lato', Verdana, Helvetica, sans-serif; */
-  font-family: 'Harriet', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Playfair Display', 'Lato', Verdana, Helvetica, sans-serif;
   font-style: italic;
   font-size: 24px;
   color: #262626;
@@ -137,17 +144,21 @@ heading {
 
 papertitle {
   /* font-family: 'Lato', Verdana, Helvetica, sans-serif; */
-  font-family: 'Harriet', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Playfair Display', 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px;
-  /* font-weight: 700 */
+  font-weight: 700
 }
 
 name {
   /* font-family: 'Lato', Verdana, Helvetica, sans-serif; */
-  font-family: 'Harriet';
+  font-family: 'Playfair Display';
   font-style: italic;
   font-size: 42px;
   color: #262626;
+}
+
+.asteriks {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .one {
