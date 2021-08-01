@@ -93,6 +93,16 @@
   src: url("HARRIETTEXTLIGHTITALIC.OTF");
 }
 
+::-moz-selection { /* Code for Firefox */
+  /* color: red; */
+  background: #ffeb00;
+}
+
+::selection {
+  /* color: red; */
+  background: #ffeb00;
+}
+
 a {
   color: #1772d0;
   text-decoration: none;
@@ -119,7 +129,7 @@ p {
   font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   font-feature-settings: 'lnum' 1;
-  color: #262626;
+  color: #4c4e4d;
 }
 
 a {
@@ -131,7 +141,7 @@ a {
 strong {
   font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
-  color: #262626;
+  color: #4c4e4d;
 }
 
 heading {
@@ -139,7 +149,12 @@ heading {
   font-family: 'Playfair Display', 'Lato', Verdana, Helvetica, sans-serif;
   font-style: italic;
   font-size: 24px;
-  color: #262626;
+  color: #4c4e4d;
+  display: block;
+  text-align:center; 
+  background-color: #ffeb00; 
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 papertitle {
@@ -153,8 +168,15 @@ name {
   /* font-family: 'Lato', Verdana, Helvetica, sans-serif; */
   font-family: 'Playfair Display';
   font-style: italic;
+  font-weight: bold;
   font-size: 42px;
-  color: #262626;
+  color: #4c4e4d;
+}
+
+.banner {
+  text-align:center; 
+  background-color: #ffeb00; 
+  border-radius: 4px;
 }
 
 .asteriks {
