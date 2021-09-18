@@ -93,15 +93,13 @@
   src: url("HARRIETTEXTLIGHTITALIC.OTF");
 }
 
-::-moz-selection { /* Code for Firefox */
-  /* color: red; */
+/* ::-moz-selection {
   background: #ffeb00;
 }
 
 ::selection {
-  /* color: red; */
   background: #ffeb00;
-}
+} */
 
 a {
   color: #1772d0;
@@ -150,11 +148,11 @@ heading {
   font-style: italic;
   font-size: 24px;
   color: #4c4e4d;
-  display: block;
+  /* display: block; */
   text-align:center; 
-  background-color: #ffeb00; 
+  /* background-color: #ffeb00;  */
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 papertitle {
@@ -175,7 +173,7 @@ name {
 
 .banner {
   text-align:center; 
-  background-color: #ffeb00; 
+  /* background-color: #ffeb00;  */
   border-radius: 4px;
 }
 
@@ -220,9 +218,10 @@ span.highlight {
 }
 
 .navbar li a {
+  font-family: 'Raleway', 'Lato', Verdana, Helvetica, sans-serif;
   display: block;
   color: #111;
-  font-weight: 600;
+  /* font-weight: 600; */
   text-decoration: none;
   text-align: center;
   text-decoration: none;
