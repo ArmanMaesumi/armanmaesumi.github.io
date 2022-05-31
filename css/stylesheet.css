@@ -246,6 +246,7 @@ span.highlight {
 
 .newsDate {
   font-weight: bold;
+  vertical-align: top;
 }
 
 .newsInfo {
