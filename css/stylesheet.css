@@ -263,7 +263,7 @@ span.highlight {
 }
 
 .art {
-  border-radius: 7px;
+  border-radius: 2px;
   z-index: 100;
   position: relative;
   transition:transform 0.25s ease;
