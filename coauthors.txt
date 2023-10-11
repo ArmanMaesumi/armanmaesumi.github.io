@@ -1,0 +1,6 @@
+<a href="https://dritchie.github.io/">Daniel Ritchie</a>
+<a href="https://paulguerrero.net/">Paul Guerrero</a>
+<a href="http://www.vovakim.com/">Vladimir G. Kim</a>
+<a href="https://techmatt.github.io/">Matthew Fisher</a>
+<a href="https://www.cse.iitb.ac.in/~sidch/">Siddhartha Chaudhuri</a>
+<a href="https://noamaig.github.io/">Noam Aigerman</a>
