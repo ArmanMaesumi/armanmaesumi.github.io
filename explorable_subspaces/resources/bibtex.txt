@@ -1,0 +1,8 @@
+@article{maesumi2023explore,
+  author = {Maesumi, Arman and Guerrero, Paul and Kim, Vladimir G. and Fisher, Matthew and Chaudhuri, Siddhartha and Aigerman, Noam and Ritchie, Daniel},
+  title = {Explorable Mesh Deformation Subspaces from Unstructured Generative Models},
+  year = {2023},
+  booktitle = {ACM SIGGRAPH Asia 2023 Conference Proceedings},
+  publisher = {Association for Computing Machinery},
+  doi = {10.1145/3610548.3618192},
+}
