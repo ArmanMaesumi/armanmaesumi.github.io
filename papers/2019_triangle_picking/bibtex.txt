@@ -1,0 +1,13 @@
+@article{maesumi2019triangle,
+    author = {Arman Maesumi},
+    title = {Triangle Inscribed-Triangle Picking},
+    journal = {The College Mathematics Journal},
+    volume = {50},
+    number = {5},
+    pages = {364-371},
+    year = {2019},
+    publisher = {Taylor & Francis},
+    doi = {10.1080/07468342.2019.1669383},
+    URL = {https://doi.org/10.1080/07468342.2019.1669383},
+    eprint = {https://doi.org/10.1080/07468342.2019.1669383}
+}

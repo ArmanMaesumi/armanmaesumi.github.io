@@ -1,0 +1,15 @@
+@article{maesumi2021adversarial,
+  author       = {Arman Maesumi and
+                  Mingkang Zhu and
+                  Yi Wang and
+                  Tianlong Chen and
+                  Zhangyang Wang and
+                  Chandrajit Bajaj},
+  title        = {Learning Transferable 3D Adversarial Cloaks for Deep Trained Detectors},
+  journal      = {CoRR},
+  volume       = {abs/2104.11101},
+  year         = {2021},
+  url          = {https://arxiv.org/abs/2104.11101},
+  eprinttype    = {arXiv},
+  eprint       = {2104.11101},
+}
