@@ -1,0 +1,7 @@
+@article{maesumi2024noise,
+author = {Maesumi, Arman and Hu, Dylan and Saripalli, Krishi and Kim, Vladimir G. and Fisher, Matthew and Pirk, S{\"{o}}ren and Ritchie, Daniel},
+title = {One Noise to Rule Them All: Learning a Unified Model of Spatially-Varying Noise Patterns},
+year = {2024},
+booktitle = {ACM Transactions on Graphics (Proceedings of SIGGRAPH 2024)},
+publisher = {Association for Computing Machinery}
+}
