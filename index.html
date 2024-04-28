@@ -65,7 +65,7 @@
               </p> -->
             </td>
             <td style="width:40%;max-width:40%">
-              <img style="max-width:65%;border-radius:50%;" alt="profile photo" src="images/ArmanMaesumi.jpg" class="hoverZoomLink">
+              <img style="max-width:65%;border-radius:50%;" alt="profile photo" src="images/headshot.png" class="hoverZoomLink">
             </td>
           </tr>
         </tbody></table>
@@ -212,8 +212,16 @@
 
         <div class="artRow">
           <div class="artColumn">
+            <video class="art" src="/renders/rotating_caustic.mp4" autoplay muted style="width: 100%;"></video>
+          </div>
+          <div class="artColumn">
             <a href="https://www.behance.net/gallery/143966925/Dispersion" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/dispersion2.jpeg" style="width:100%"></a>
           </div>
+          <div class="artColumn">
+            <a href="https://www.behance.net/gallery/146723237/Envelopes-of-light" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/envelopes.jpg" style="width:100%"></a>
+          </div>
+        </div> 
+        <div class="artRow">
           <div class="artColumn">
             <a href="https://www.behance.net/gallery/135757275/Artifacts" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/fractal.jpg" style="width:100%"></a>
           </div>
@@ -222,19 +230,13 @@
             <!-- <a href="https://www.behance.net/gallery/144264773/Fizz" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/cup.jpeg" style="width:100%"></a> -->
             <a href="https://www.behance.net/gallery/150466509/Chromatic-Undulations" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/chromatic.jpeg" style="width:100%"></a>
           </div>
-        </div> 
-        <div class="artRow">
-          <div class="artColumn">
-            <a href="https://www.behance.net/gallery/146723237/Envelopes-of-light" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/envelopes.jpg" style="width:100%"></a>
-          </div>
-          <div class="artColumn">
-            <video class="art" src="/renders/infinite_chess.mp4" autoplay loop muted style="width: 100%;"></video>
-          </div>
           <div class="artColumn">
             <a href="https://www.behance.net/gallery/144264773/Fizz" target="_blank" rel="noopener noreferrer"><img class="art" src="renders/cup_closeup.jpeg" style="width:100%"></a>
           </div>
+          <div class="artColumn">
+            <video class="art" src="/renders/infinite_chess.mp4" autoplay muted style="width: 100%;"></video>
+          </div>
         </div>
-
         <!-- <div class="artRow">
           <div class="artColumn">
             <table style="width:100%"><tbody>    
@@ -319,5 +321,14 @@
   </table>
     </tbody></table>
 </body>
+
+<script>
+document.querySelectorAll('video').forEach(function(video) {
+    video.addEventListener('ended', function(e) {
+        e.target.currentTime = 0;
+        e.target.play();
+    }, false);
+});
+</script>
 
 </html>
