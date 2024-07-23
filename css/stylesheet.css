@@ -288,3 +288,13 @@ span.highlight {
   -webkit-transform: scale(1.5);
   transform:scale(1.5);
 }
+
+.troubleshootingError {
+  display: block;
+  white-space: pre-line;
+}
+
+.troubleshootingSolution {
+  display: block;
+  white-space: pre-line;
+}
