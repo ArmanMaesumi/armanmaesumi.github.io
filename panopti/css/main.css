@@ -1,0 +1,186 @@
+
+@font-face {
+  font-family: "LibertinusSans";
+  src: url("../assets/fonts/libertinus/LibertinusSans-Regular.otf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LibertinusSans";
+  src: url("../assets/fonts/libertinus/LibertinusSans-Italic.otf");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LibertinusSans";
+  src: url("../assets/fonts/libertinus/LibertinusSans-Bold.otf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root  > * {
+  --md-primary-fg-color:        #4361ee;
+  --md-primary-fg-color--light: #ECB7B7;
+  --md-primary-fg-color--dark:  #90030C;
+}
+
+/* @font-face {
+  font-family: "LibertinusSerif";
+  src: url("../assets/fonts/libertinus/LibertinusSerif-Regular.otf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LinuxBiolinumO";
+  src: url("../assets/fonts/linux-biolinum-o/LinBiolinum_R.woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LinuxBiolinumO";
+  src: url("../assets/fonts/linux-biolinum-o/LinBiolinum_RI.woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LinuxBiolinumO";
+  src: url("../assets/fonts/linux-biolinum-o/LinBiolinum_RB.woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */
+
+:root {
+  --md-text-font: "LibertinusSans";
+}
+
+.md-typeset p {
+    text-align: justify !important;
+    /* font-size: 18px; */
+    line-height:1.25;
+  }
+  
+.md-typeset li {
+  text-align: justify !important;
+  line-height:1.25;
+}
+
+/* .md-typeset code { */
+  /* font-size: 0.85em; */
+/* }  */
+
+/* ----- Custom admonition code block: ----- */
+:root {
+  --md-admonition-icon--code-block: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.59 3.41 7 4.82 3.82 8 7 11.18 5.59 12.6 1 8zm5.82 0L16 8l-4.59 4.6L10 11.18 13.18 8 10 4.82zM22 6v12c0 1.11-.89 2-2 2H4a2 2 0 0 1-2-2v-4h2v4h16V6h-2.97V4H20c1.11 0 2 .89 2 2"/></svg>')
+}
+
+.md-typeset .admonition.info, 
+.md-typeset details.info {
+  /* border-color: rgba(247, 130, 120, 0.5); */
+  border-color: rgba(67, 98, 238, 0.5);
+}
+
+.md-typeset .info > .admonition-title,
+.md-typeset .info > summary {
+  /* background-color: rgba(247, 130, 120, 0.15); */
+  background-color: rgba(67, 98, 238, 0.15);;
+}
+
+.md-typeset .info > .admonition-title::before,
+.md-typeset .info > summary::before {
+  /* background-color: rgb(247, 130, 120); */
+  background-color: rgb(67, 98, 238);;
+  -webkit-mask-image: var(--md-admonition-icon--code-block);
+          mask-image: var(--md-admonition-icon--code-block);
+}
+
+.md-typeset .info > .admonition-title::after, .md-typeset .info > summary::after {
+  background-color: rgba(67, 98, 238);
+}
+
+.md-typeset .admonition, .md-typeset details {
+  font-size: 1.0em;
+}
+
+.md-content {
+  padding-bottom: 50px;
+}
+
+.md-nav {
+  font-size: 0.8rem;
+}
+
+.md-nav__link {
+  margin-top: 0.3em;
+}
+
+.md-typeset h1 {
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+
+.md-typeset img {
+  width: auto;
+  float: left;
+  margin: 0 1em 1em 0;
+  border: 0px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.md-typeset img:hover {
+  transform: translateY(-4px);
+}
+
+.prettyFrame {
+  width: auto;
+  float: left;
+  margin: 0 1em 1em 0;
+  border: 0px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.prettyFrame:hover {
+  transform: translateY(-4px);
+}
+
+.hidden-header {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.75rem;
+}
+
+.md-header__button.md-logo {
+    margin: 0;
+    padding: 0;
+    margin-left: 1em;
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+    height: 2rem;
+    width: 2rem;
+}
