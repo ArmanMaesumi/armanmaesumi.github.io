@@ -94,6 +94,8 @@
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
 
     
     
@@ -887,7 +889,7 @@
 <h1 id="home">Home</h1>
 <p><img alt="Banner" src="assets/images/panopti_logo.jpg" /></p>
 <p>Panopti is a Python package for interactive 3D visualization that seamlessly supports remote development setups (e.g. through SSH). It pairs a Flask server with a React+ThreeJS frontend and is designed such that users only need to write Python code, making it painless to setup interactive experiments and scenes. <strong>All code examples and demos throughout the documentation are achieved purely using Panopti in Python -- no JavaScript required!.</strong></p>
-<p>Panopti supports various <a href="./geometry.md">geometric data structures</a> (e.g. meshes, point clouds), <a href="controls/">UI control elements</a> (e.g. buttons, sliders, color pickers, interactive plots) that are programmable in Python, and global <a href="events/">event callbacks</a> (e.g. for camera movement, clicking on geometry).</p>
+<p>Panopti supports various geometric data structures (e.g. <a href="geometry/mesh/">meshes</a>, <a href="geometry/point_cloud/">point clouds</a>), <a href="controls/">UI control elements</a> (e.g. buttons, sliders, color pickers, interactive plots) that are programmable in Python, and global <a href="events/">event callbacks</a> (e.g. for camera movement, clicking on geometry).</p>
 <p>A minimal example looks like:
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">panopti</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">viewer</span> <span class="o">=</span> <span class="n">panopti</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">server_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">,</span> <span class="n">viewer_id</span><span class="o">=</span><span class="s2">&quot;client&quot;</span><span class="p">)</span>
@@ -917,6 +919,8 @@
 
 
 
+
+  
 
 
 
