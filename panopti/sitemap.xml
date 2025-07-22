@@ -2,94 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://armanmaesumi.github.io/panopti/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/about/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
+    </url>
+    <url>
+         <loc>https://armanmaesumi.github.io/panopti/change_log/</loc>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/controls/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/events/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/getting_started/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
+    </url>
+    <url>
+         <loc>https://armanmaesumi.github.io/panopti/headless_rendering/</loc>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/materials/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/remote_ssh/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/todo/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/examples/controls_callbacks/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/examples/importing_geometry/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/examples/materials/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/examples/viewer_state_events/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/geometry/animated_mesh/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/geometry/arrows/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/geometry/mesh/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/geometry/point_cloud/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/camera/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/console_mirroring/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/customization/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/error_handling/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/inspection_tool/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/screenshots/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
     <url>
          <loc>https://armanmaesumi.github.io/panopti/viewer/transformations/</loc>
-         <lastmod>2025-07-11</lastmod>
+         <lastmod>2025-07-22</lastmod>
     </url>
 </urlset>
