@@ -1,0 +1,490 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	@font-face {
+		font-family: VenusCarrare;
+		src: url("fonts/Venus+Carrare.otf");
+	}
+
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+
+	p {
+		text-align: justify;
+	}
+	
+	h1 {
+		font-family: VenusCarrare;
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	/* .paperTitle {
+		font-family: VenusCarrare;
+		font-size: 36px;
+		font-weight: 300;
+	} */
+
+	.paperTitle {
+    font-family: 'VenusCarrare', sans-serif;
+    text-align: center;
+}
+
+.mainTitle {
+    font-size: 36px;
+    font-weight: 300;
+}
+
+.subTitle {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.conferenceInfo {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .mainTitle {
+        font-size: 36px; /* Smaller font size on mobile */
+    }
+    .subTitle {
+        font-size: 30px; /* Smaller font size on mobile */
+    }
+    .conferenceInfo {
+        font-size: 22px; /* Smaller font size on mobile */
+    }
+}
+
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		15px 15px 0 0px #fff, /* The fourth layer */
+		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		20px 20px 0 0px #fff, /* The fifth layer */
+		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		25px 25px 0 0px #fff, /* The fifth layer */
+		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+		margin-bottom: 25px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	/* Vertical alignment for author list: */
+	.author{
+		vertical-align: top;
+	}
+
+	/* .bibBox {
+		width: 320px;
+		padding: 10px;
+		border: 5px dashed rgb(214, 214, 214);
+		margin: 0;
+	} */
+	.bibBox {
+    width: 600px;
+    padding: 10px;
+    border: 5px dashed rgb(214, 214, 214);
+    margin: 0;
+    font-family: monospace; /* To maintain the monospace appearance */
+    white-space: pre-line; /* To retain the whitespace and line breaks */
+	background-color: #c0d3e64a;
+}
+
+</style>
+
+<html lang="en">
+<head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWZHZ3QC68"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BWZHZ3QC68');
+</script>
+	<title>PoissonNet: A Local-Global Approach for Learning on Surfaces</title>
+	<meta charset="utf-8">
+	<meta property="og:image" content="https://armanmaesumi.github.io/onenoise/resources/paper_teaser2.jpg"/> 
+	<meta property="og:title" content="PoissonNet: A Local-Global Approach for Learning on Surfaces" />
+	<meta property="og:description" content="A. Maesumi In SIGGRAPH Asia 2025." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Get from Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src=""></script> 
+	<!-- <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-75863369-6');
+	</script> -->
+</head>
+
+<body>
+	<br>
+	<center>
+		<div class="paperTitle">
+			<div class="mainTitle">PoissonNet: A Local-Global Approach for Learning on Surfaces</div>
+			<!-- <div class="mainTitle">One Noise to Rule Them All:</div> -->
+			<!-- <div class="subTitle">Learning a Unified Model of Spatially-Varying Noise Patterns</div> -->
+			<div class="conferenceInfo">Transactions on Graphics (Proceedings of SIGGRAPH Asia 2025)</div>
+		</div>
+		<br>
+
+		<!-- <h1 style="font-size: 22px;">Transactions on Graphics (Proceedings of SIGGRAPH 2024)</h1> -->
+		<table align=center width=800px>
+			<table align=center width=800px>
+				<tr>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="https://armanmaesumi.github.io/">Arman Maesumi</a></span>
+							<br>
+							Brown University
+						</center>
+					</td>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="https://tanishmakadia.com/">Tanish Makadia</a></span>
+							<br>
+							Brown University
+						</center>
+					</td>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="https://imagine.enpc.fr/~groueixt/">Thibault Groueix</a></span>
+							<br>
+							Adobe Research
+						</center>
+					</td>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="http://www.vovakim.com/">Vladimir G. Kim</a></span>
+							<br>
+							Adobe Research
+						</center>
+					</td>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="https://dritchie.github.io/">Daniel Ritchie</a></span>
+							<br>
+							Brown University
+						</center>
+					</td>
+					<td align=center width=100px class="author">
+						<center>
+							<span style="font-size:24px"><a href="https://noamaig.github.io/">Noam Aigerman</a></span>
+							<br>
+							University of Montreal
+						</center>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table align=center width=800px>
+				<tr>
+					<div style="display: flex; justify-content: space-between; width: 600px; align-items: center;">
+						<span style="display: flex; font-size: 22px; text-align: center;">
+							<a href='https://armanmaesumi.github.io/papers/2025_poissonnet/sigg25_poissonnet.pdf'>[Paper + Supp., 64mb]</a>
+						</span>
+						<!-- <span style="display: flex; font-size: 22px; text-align: center;">
+							<a href='https://armanmaesumi.github.io/papers/2024_onenoise/sigg24_onenoise_supplemental.pdf'>[Supp., 12mb]</a>
+						</span> -->
+						<!-- <span style="display: flex; font-size: 22px; text-align: center;">
+							<a href=''>[arXiv]</a>
+						</span> -->
+						<span style="display: flex; font-size: 22px; text-align: center;">
+							<a href='https://github.com/ArmanMaesumi/poissonnet'>[GitHub]</a>
+						</span>
+						<span style="display: flex; font-size: 22px; text-align: center;">
+							<a href='./resources/bibtex.txt' target="_blank">[Bibtex]</a>
+						</span>
+					</div>
+				</tr>
+			</table>
+		</table>
+	</center>
+
+	<br>
+
+	<!-- TEASER -->
+	<center>
+		<table align=center width=1100px>
+			<tr>
+				<td width=850px>
+					<center>
+						<img id="paper_teaser" src="./resources/teaser.png" width="100%" style="border-radius: 3px">
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>
+	<table align=center width=850px>
+		<center><h1>Abstract</h1></center>
+		<tr>
+			<td>
+				<p>
+                    Many network architectures exist for learning on meshes, yet their constructions entail delicate trade-offs between difficulty learning high-frequency features, insufficient receptive field, sensitivity to discretization, and inefficient computational overhead. Drawing from classic local-global approaches in mesh processing, we introduce PoissonNet, a novel neural architecture that overcomes all of these deficiencies by formulating a local-global learning scheme, which uses Poisson's equation as the primary mechanism for feature propagation. Our core network block is simple; we apply learned local feature transformations in the gradient domain of the mesh, then solve a Poisson system to propagate scalar feature updates across the surface globally. Our local-global learning framework preserves the features's full frequency spectrum and provides a truly global receptive field, while remaining agnostic to mesh triangulation. Our construction is efficient, requiring far less compute overhead than comparable methods, which enables scalability---both in the size of our datasets, and the size of individual training samples. These qualities are validated on various experiments where, compared to previous intrinsic architectures, we attain state-of-the-art performance on semantic segmentation and parameterizing highly-detailed animated surfaces. Finally, as a central application of PoissonNet, we show its ability to learn deformations, significantly outperforming state-of-the-art architectures that learn on surfaces.
+				</p>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	
+	<table align=center width=850px>
+		<center><h1>High-level Summary</h1></center>
+		<tr>
+			<td>
+				<p>
+					<b>PoissonNet</b> is the first method for learning on surfaces that simultaneously satisfies several key properties:
+					<ol>
+						<li><b>Full spectrum.</b> Our network features retain their native frequency components without any spectral truncation, preserving high-frequency details while avoiding expensive precomputation of eigenbases.</li>
+						<br>
+						<li><b>Global receptive field.</b> As an integral-like operator, our proposed network block efficiently propagates local feature updates across the entire surface.</li>
+						<br>
+						<li><b>Triangulation agnosticism.</b> The core mechanism in our network approximates a well-defined object: the continuous Poisson's equation. This allows PoissonNet to produce near-identical predictions under changes in mesh discretization (subdivision, simplification, remeshing, corruption, etc.).</li>
+						<br>
+						<li><b>Efficiency.</b> PoissonNet can operate on high-resolution meshes and forgo lengthy pre-computation before training and inference, which facilitates training on large datasets.</li>
+					</ol>
+				</p>
+			</td>
+		</tr>   
+	</table>
+    <br>
+    <table align=center width=850px>
+        <tr>
+            <td width=260px>
+                <center>
+                    <!-- <img id="paper_teaser" src="./resources/fig_pipeline.png" width="850px"> -->
+					<img id="paper_teaser" src="./resources/fig_pipeline.svg" width="950px">
+                </center>
+            </td>
+        </tr>
+    </table>
+	<br>
+    <table align=center width=850px>
+        <tr>
+            <td>
+                <p>
+                    We illustrate our <i>PoissonNet block</i> on a surface patch of a triangle mesh. Our block begins by computing spatial gradients of the incoming scalar features—for demonstrative purposes, we depict the signal as having three channels (shown as green, orange, and blue), with color indicating signal intensity. The gradient features are transformed locally in each tangent basis (denoted by basis vectors <b>u</b><sub>1</sub> and <b>u</b><sub>2</sub>) via a Vector MLP, which induces a linear combination of rotated and scaled gradients on each face. We then solve a global Poisson system using the transformed vector fields, producing new scalar features on vertices that are updated locally using a scalar (per-vertex) MLP. This process is repeated for <b>N</b> blocks, thereby producing a final feature representation on the shape.
+                </p>
+            </td>
+        </tr>
+    </table>
+	<br>
+    <hr>
+
+    <table align="center" width="850px">
+        <center><h1>Shape Deformation Results</h1></center>
+        <tr>
+            <td align="center">
+                <table width="100%" style="border: none;">
+                    <tr>
+                        <td align="center" width="33%">
+                            <video width="120%" loop muted autoplay playsinline>
+                                <source src="./resources/beast_yoga1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </td>
+                        <td align="center" width="33%">
+                            <video width="120%" loop muted autoplay playsinline>
+                                <source src="./resources/mutant_yoga1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </td>
+                        <td align="center" width="33%">
+                            <video width="120%" loop muted autoplay playsinline>
+                                <source src="./resources/armadillo_yoga1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table width="100%" style="border: none;">
+                    <tr>
+                        <td align="center" width="50%">
+                            <video width="120%" loop muted autoplay playsinline>
+                                <source src="./resources/crumpling_paper_boomerang_gt.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div style="margin-top:8px; font-size: 15px; width: 120%;"><h2>Ground truth (200mb)</h2></div>
+                        </td>
+                        <td align="center" width="50%">
+                            <video width="120%" loop muted autoplay playsinline>
+                                <source src="./resources/crumpling_paper_boomerang.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div style="margin-top:8px; font-size: 15px; width: 120%;"><h2>PoissonNet (2mb)</h2></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+
+    <!-- <table align=center width=850px>
+		<center><h1>Semantic Segmentation</h1></center>
+		<tr>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
+    <br>
+    <hr> -->
+
+	<table align=center width=550px>
+		<center><h1>Paper and Supplementary Material</h1></center>
+		<tr>
+			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
+			<td><span style="font-size:14pt">A. Maesumi, T. Makadia, T. Groueix, V. Kim, D. Ritchie, and N. Aigerman<br>
+				<b>PoissonNet: A Local-Global Approach for Learning on Surfaces.</b><br>
+				In ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia 2025).<br>
+                (hosted on <a href="">arXiv</a>)<br>
+			</td>
+		</tr>
+	</table>
+    <br>
+	<table align=center width=600px>
+		<tr>
+			<td>
+				Bibtex:
+				<div class="bibBox">
+					@article{maesumi2025poissonnet,
+						author = {Maesumi, Arman and Makadia, Tanish and Groueix, Thibault and Kim, Vladimir G. and Ritchie, Daniel and Aigerman, Noam},
+						title = {PoissonNet: A Local-Global Approach for Learning on Surfaces},
+						year = {2025},
+						booktitle = {ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia 2025)},
+						publisher = {Association for Computing Machinery}
+					}
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=900px>
+		<tr>
+			<td width=400px>
+				<left>
+					<center><h1>Acknowledgements</h1></center>
+					This material is based upon work supported by: National Science Foundation Graduate Research Fellowship under Grant No. 2040433; NSERC Discovery grant RGPIN-2024-04605, "Practical Neural Geometry Processing";
+					FRQNT Établissement de la relève professorale 365040, "Calcul rapide et léger des déformations à l'aide de réseaux neuronaux"; and a gift from Adobe. Part of this work was done while Arman Maesumi was an intern at Adobe Research. The authors thank Qingnan Zhou for providing preprocessed Thingi10k data, as well as Nick Sharp, Alec Jacobson, and Derek Liu for fruitful discussions.
+					
+					<br><br>
+					This <a href="https://github.com/richzhang/webpage-template">project page template</a> was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a>.
+				</left>
+			</td>
+		</tr>
+	</table>
+
+<br>
+</body>
+
+</html>
+

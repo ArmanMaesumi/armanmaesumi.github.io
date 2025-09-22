@@ -1,0 +1,7 @@
+@article{maesumi2025poissonnet,
+author = {Maesumi, Arman and Makadia, Tanish and Groueix, Thibault and Kim, Vladimir G. and Ritchie, Daniel and Aigerman, Noam},
+title = {PoissonNet: A Local-Global Approach for Learning on Surfaces},
+year = {2025},
+booktitle = {ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia 2025)},
+publisher = {Association for Computing Machinery}
+}
