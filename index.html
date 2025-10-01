@@ -31,6 +31,17 @@
 </head>
 
 <body>
+  <!-- <div style="position: sticky; top: 0; z-index: 1000; background: #ffffffcc; backdrop-filter: blur(6px); border-bottom: 1px solid #eee;">
+    <div style="max-width:1000px; margin: 0 auto; padding: 10px 0; text-align: center; font-family: 'Raleway', sans-serif;">
+      <a href="./cv/cv.pdf" style="margin: 0 12px; text-decoration: none; color: inherit;">CV</a>
+      |
+      <a href="#research" style="margin: 0 12px; text-decoration: none; color: inherit;">Research</a>
+      |
+      <a href="#software" style="margin: 0 12px; text-decoration: none; color: inherit;">Software</a>
+      |
+      <a href="#3d" style="margin: 0 12px; text-decoration: none; color: inherit;">Art</a>
+    </div>
+  </div> -->
   <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -46,13 +57,16 @@
                 <a href="mailto:arman_maesumi@brown.edu">arman_maesumi@brown.edu</a>
               </p>
               <p>
-                I am a rising fifth year Computer Science PhD student at <a href="https://cs.brown.edu/">Brown University</a>, where I am advised by Professor <a href="https://dritchie.github.io/">Daniel Ritchie</a>. My work is supported by the <a href="https://www.nsfgrfp.org/">NSF Graduate Research Fellowship Program</a>. 
+                I am a final year computer science PhD student at <a href="https://cs.brown.edu/">Brown University</a>, where I am advised by Professor <a href="https://dritchie.github.io/">Daniel Ritchie</a>. My work is supported by the <a href="https://www.nsfgrfp.org/">NSF Graduate Research Fellowship Program</a>. 
               </p>
               <p>
                 I received my BS in computer science from <a href="https://www.utexas.edu/">The University of Texas at Austin</a> in 2021, where I did research with Professor <a href="https://cs.utexas.edu/~bajaj">Chandrajit Bajaj</a>.
               </p>
               <p>
                 My research interests lie at the intersection of deep learning and computer graphics. In my free time I enjoy creating <a href="./#3d">3D art</a>, cooking, and playing chess.
+              </p>
+              <p>
+                <b>I am actively looking for full-time opportunities starting in 2026!</b>
               </p><br>
               <div style="text-align:center;">
                 <a href="./cv/cv.pdf">CV</a> / <a href="https://scholar.google.com/citations?user=SOJBF1wAAAAJ&hl=en">Google Scholar</a> / <a href="https://twitter.com/ArmanMaesumi">Twitter</a>
@@ -117,31 +131,27 @@
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading id="research" class="banner">Research</heading>
-              <p>
-                I am broadly interested in the interplay between geometry and deep learning: 
-                <br>
-                <p style="margin-top: 0.5em;">
-                <b>1) Deep learning for geometry</b>:
-                <br>
-                <p style="margin-left: 2em;">
-                  My work focuses on neural methods for shape analysis and deformation. I'm actively pursuing two projects in this space; i) a new architecture for learning on surfaces, and ii) a shape descriptor that is robust to degenerate, multi-component geometry.
-                  
-                  <br><br>
-
-                  <b>I am particularly interested in developing robust and efficient architectures suitable for large scale, in-the-wild 3D datasets.</b>
+              <td style="padding:20px;width:100%;vertical-align:middle">
+                <heading id="research" class="banner">Research</heading>
+                <p>
+                  <b>Geometry ↔ Learning:</b> My research considers the interplay of geometry and deep learning as a <i>two-way</i> street.
+                  <br>
+                  <p style="margin-top: 0.5em;">
+                  <b>1) Deep learning for geometry</b>:
+                  <br>
+                  <p style="margin-left: 2em;">
+                    I am actively developing robust and efficient neural methods for large-scale, in-the-wild 3D data, with the goal of extending the deep learning revolution to the 3D world.
+                    
+                  </p>
+                  <b>2) Geometry for deep learning</b>: 
+                  <br>
+                  <p style="margin-left: 2em;">  
+                    Viewing feature spaces through a geometric lens has enabled emergent capabilities in my research; e.g., by enabling generative models to smoothly interpolate data in the absence of in-between observations. 
+                    
+                    <br>
+                    </p>  
+                    <b>As the boundaries between modalities blur, I aim to apply geometric principles to large foundation models broadly, facilitating more robust training, personalization, and interpretability by exploiting feature/weight-space geometry.</b>
                 </p>
-                <b>2) Geometry for deep learning</b>: 
-                <br>
-                <p style="margin-left: 2em;">  
-                  Using differential geometry to understand and control neural networks is particularly exciting. For example, augmenting inference using geometric ideas (e.g. as-smooth-as-possible latent interpolation), or understanding the geometry of high-dimensional feature spaces and how to exploit it for "editing" pretrained models.
-                  
-                  <br><br>
-
-                   <b>I aim to extend such geometric ideas to large (vision/language/diffusion) foundation models, as the boundaries between domains continue to blur.</b>
-                  </p>  
-              </p>
             </td>
           </tr>
         </tbody></table>
@@ -254,7 +264,7 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
           <td style="padding:20px;width:100%;vertical-align:middle;padding-bottom: 0px;">
-            <heading id="research" class="banner">Software</heading>
+            <heading id="software" class="banner">Software</heading>
             <!-- <p>I have developed several open source projects both for</p> -->
           </td>
         </tr>
