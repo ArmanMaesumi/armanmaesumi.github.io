@@ -63,10 +63,7 @@
                 I received my BS in computer science from <a href="https://www.utexas.edu/">The University of Texas at Austin</a> in 2021, where I did research with Professor <a href="https://cs.utexas.edu/~bajaj">Chandrajit Bajaj</a>.
               </p>
               <p>
-                My research interests lie at the intersection of deep learning and computer graphics. In my free time I enjoy creating <a href="./#3d">3D art</a>, cooking, and playing chess.
-              </p>
-              <p>
-                <b>I am actively looking for full-time opportunities starting in 2026!</b>
+                My recent work has primarily focused on representation learning and generative modeling on meshes. In my free time I enjoy creating <a href="./#3d">3D art</a>.
               </p><br>
               <div style="text-align:center;">
                 <a href="./cv/cv.pdf">CV</a> / <a href="https://scholar.google.com/citations?user=SOJBF1wAAAAJ&hl=en">Google Scholar</a> / <a href="https://github.com/ArmanMaesumi">GitHub</a> / <a href="https://twitter.com/ArmanMaesumi">Twitter</a>
@@ -89,6 +86,10 @@
                   <col style="width: 15%;">
                   <col style="width: auto;">
                 </colgroup>
+                <tr class="newsRow">
+                  <td class="newsDate">June 2026</td>
+                  <td>I will be joining <a href="https://app.reve.com/">Reve</a> as a Research Scientist!</td>
+                </tr>
                 <tr class="newsRow">
                   <td class="newsDate">Aug 2025</td>
                   <td>One journal paper accepted to SIGGRAPH Asia 2025! 🇭🇰</td>
@@ -132,8 +133,8 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <heading id="research" class="banner">Research</heading>
-                <p>
+                <heading id="research" class="banner">Publications</heading>
+                <!-- <p>
                   <b>Geometry ↔ Learning:</b> My research considers the interplay of geometry and deep learning as a <i>two-way</i> street.
                   <br>
                   <p style="margin-top: 0.5em;">
@@ -151,12 +152,33 @@
                     <br>
                     </p>  
                     <b>As the boundaries between modalities blur, I aim to apply geometric principles to large foundation models broadly, facilitating more robust training, personalization, and interpretability by exploiting feature/weight-space geometry.</b>
-                </p>
+                </p> -->
             </td>
           </tr>
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>   
           <tr>
+            <td style="vertical-align:top;padding-top: 5px;">
+              <!-- <img src="papers/2024_onenoise/thumbnail.png" width="350" style="border-radius: 3px;"> -->
+              <img class="paperThumbnail" src="papers/2026_matern/representative_image.png" width="350" style="border-radius: 3px;">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://matern-fm.github.io/">
+                <papertitle>Matérn Noise for Triangulation-Agnostic Flow Matching on Meshes</papertitle>
+              </a>
+              <p style="margin:auto"><a href="https://tianshukuai.github.io/">Tianshu Kuai</a>, <b>Arman Maesumi</b>, <a href="https://dritchie.github.io/">Daniel Ritchie</a>, <a href="https://noamaig.github.io/">Noam Aigerman</a>
+                <br>
+              <em>ACM Transactions on Graphics (Proceedings of SIGGRAPH)</em>, 2026
+              <br>
+              [ <a href="https://matern-fm.github.io/">project page</a> / <a href="https://matern-fm.github.io/static/pdfs/Matern-FM.pdf">pdf (78mb)</a> / <a href="https://arxiv.org/abs/2605.19305">arXiv</a> / <a href="https://github.com/kts707/matern-fm">code</a> / <a href="./papers/2026_matern/matern_bibtex.tex">bibtex</a> ]
+              </p>
+              <p>
+                 Generative modeling on surfaces requires delicate care due to irregular triangulations. We employ Matérn noise (as opposed to iid Gaussian noise) to enable triangulation-agnostic flow matching on meshes.
+              </p>
+              <br>
+            </td>
+          </tr>
+
             <td style="vertical-align:top;padding-top: 5px;">
               <!-- <img src="papers/2024_onenoise/thumbnail.png" width="350" style="border-radius: 3px;"> -->
               <img class="paperThumbnail" src="papers/2025_poissonnet/representative_image.jpg" width="350" style="border-radius: 3px;">
